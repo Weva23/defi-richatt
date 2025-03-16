@@ -27,11 +27,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import os
+
+OPENAI_API_KEY = "ta_cle_api_openai"
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
 
 
 # Application definition
@@ -44,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mots'
+    'mots',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
